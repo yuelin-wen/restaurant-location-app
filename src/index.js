@@ -6,7 +6,7 @@
 * 
 *  Name: _____Yuelin Wen_________________ Student ID: _______114379209___________ Date: ______June 19 2021________
 *
-*  Online Link to Restaurant App: _________________________________________________________
+*  Online Link to Restaurant App: https://react-restaurant-app-five.vercel.app/Restaurants
 *
 ***********************************************************************************/ 
 
