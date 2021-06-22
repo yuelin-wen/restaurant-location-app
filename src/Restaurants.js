@@ -78,17 +78,29 @@ export default function Restaurants() {
         );
     }
     else {
-        return (
-            <>
-                <br /><
-                    Card>
-                    <Card.Body>
-                        <Card.Text>
-                            No Restaurants Found
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </>)
+        if (restaurants === null) {
+            return (
+                <>
+                    <br /><Card>
+                        <Card.Body>
+                            <Card.Text>
+                                Loading Restaurants
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </>)
+        }else{
+            return (
+                <>
+                    <br /><Card>
+                        <Card.Body>
+                            <Card.Text>
+                                No Restaurants Found
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </>)
+        }
     }
 
 
