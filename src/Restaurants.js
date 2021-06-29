@@ -27,8 +27,8 @@ export default function Restaurants() {
 
     function previousPage() {
         setPage(page => page - 1);
-        if (page < 0) {
-            setPage(0);
+        if (page < 2) {
+            setPage(page);
         }
     }
 
