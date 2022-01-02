@@ -14,8 +14,8 @@ export default function Restaurants() {
 
     useEffect(() => {
         let url = location
-            ? `https://restaurant-location-api.herokuapp.com//api/restaurants?page=${page}&perPage=10&borough=${location}`
-            : `https://restaurant-location-api.herokuapp.com//api/restaurants?page=${page}&perPage=10`;
+            ? `https://restaurant-location-api.herokuapp.com/api/restaurants?page=${page}&perPage=10&borough=${location}`
+            : `https://restaurant-location-api.herokuapp.com/api/restaurants?page=${page}&perPage=10`;
         fetch(url)
             .then(res => res.json())
             .then(data => {

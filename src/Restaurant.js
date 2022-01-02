@@ -12,7 +12,7 @@ export default function Restaurant() {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`https://restaurant-location-api.herokuapp.com//api/restaurants/${id}`)
+        fetch(`https://restaurant-location-api.herokuapp.com/api/restaurants/${id}`)
             .then(res => res.json())
             .then(data => {
                 setLoading(false);
