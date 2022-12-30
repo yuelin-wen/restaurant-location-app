@@ -1,6 +1,10 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was fetch from API that i built.
+
+http://restaurant-location-api.vercel.app
+
+Github link: https://github.com/yuelin-wen/restaurant-location-api
 
 ## Available Scripts
 
