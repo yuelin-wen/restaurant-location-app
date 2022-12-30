@@ -1,11 +1,8 @@
 import './App.css';
 
 import { Button, Col, Container, Form, FormControl, Nav, Navbar, Row } from 'react-bootstrap';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
-
+import { Navigate, useNavigate, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import About from './About';
 import Restaurants from './Restaurants';
@@ -14,11 +11,11 @@ import NotFound from './NotFound';
 
 function App() {
   const [searchString, setSearchString] = useState("");
-  let history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`/restaurants?borough=${searchString}`);
+    navigate(`/restaurants?borough=${searchString}`);
     setSearchString("");
   }
 
@@ -26,46 +23,37 @@ function App() {
   return (
     <>
       <Navbar bg="light" expand="lg">
-        <LinkContainer to="/">
-          <Navbar.Brand>New York Restaurants</Navbar.Brand>
-        </LinkContainer>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <LinkContainer to="/restaurants">
-              <Nav.Link>Full List</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/about">
-              <Nav.Link>About</Nav.Link>
-            </LinkContainer>
-          </Nav>
-          <Form onSubmit={handleSubmit} inline>
-            <FormControl type="text" placeholder="Borough" className="mr-sm-2" value={searchString} onChange={(e) => setSearchString(e.target.value)} />
-            <Button type="submit" variant="outline-success">Search</Button>
-          </Form>
-        </Navbar.Collapse>
+        <Container fluid>
+          <Navbar.Brand href="/">New York Restaurants</Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+              <Nav.Link href="/restaurants">Full List</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
+            </Nav>
+            <Form className="d-flex" onSubmit={handleSubmit}>
+              <FormControl type="text" placeholder="Borough" className="me-2"
+                aria-label="Search" value={searchString} onChange={(e) => setSearchString(e.target.value)} />
+              <Button type="submit" variant="outline-success">Search</Button>
+            </Form>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
 
       <Container>
         <Row>
           <Col>
-            <Switch>
-              <Route exact path="/">
-                <Redirect to="/Restaurants" />
-              </Route>
-              <Route exact path="/about">
-                <About />
-              </Route>
-              <Route exact path="/Restaurants">
-                <Restaurants />
-              </Route>
-              <Route path="/Restaurant/:id">
-                <Restaurant />
-              </Route>
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
+            <Routes>
+              <Route exact path="/" element={<Navigate to="/Restaurants" />} />
+              <Route exact path="/about" element={<About />} />
+              <Route exact path="/Restaurants" element={<Restaurants />} />
+              <Route path="/Restaurant/:id" element={<Restaurant />} />
+              <Route element={<NotFound />} />
+            </Routes>
           </Col>
         </Row>
       </Container>

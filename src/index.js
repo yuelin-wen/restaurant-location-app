@@ -1,17 +1,6 @@
-/****************************************************************************
-*  WEB422 – Assignment 3
-*  I declare that this assignment is my own work in accordance with Seneca Academic Policy.  
-*  No part of this assignment has been copied manually or electronically from any other source
-*  (including web sites) or distributed to other students.
-* 
-*  Name: _____Yuelin Wen_________________ Student ID: _______114379209___________ Date: ______June 19 2021________
-*
-*  Online Link to Restaurant App: https://restaurant-location-api.vercel.app/
-*
-***********************************************************************************/ 
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -19,13 +8,14 @@ import { BrowserRouter } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
-document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

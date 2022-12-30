@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
-import { Card, CardDeck } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import Moment from "react-moment";
 
 export default function Restaurant() {
@@ -27,7 +27,7 @@ export default function Restaurant() {
     if (!loading) {
         if (restaurant) {
             return (<>
-                <Card >
+                <Card className='mt-4'>
                     <Card.Body>
                         <Card.Title>{restaurant.name}</Card.Title>
                         <Card.Text>
@@ -43,7 +43,7 @@ export default function Restaurant() {
                 <br />
                 <h3>Ratings</h3>
                 <hr />
-                <CardDeck>
+                <>
                     {restaurant.grades.map(grade =>
                         <Card>
                             <Card.Body>
@@ -54,7 +54,7 @@ export default function Restaurant() {
                                 </Card.Text>
                             </Card.Body>
                         </Card>)}
-                </CardDeck>
+                </>
             </>)
         }
         else {

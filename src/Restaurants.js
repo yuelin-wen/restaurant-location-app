@@ -1,4 +1,4 @@
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Card, Table, Pagination } from "react-bootstrap";
 import queryString from "query-string";
@@ -7,7 +7,7 @@ export default function Restaurants() {
     const [restaurants, setRestaurants] = useState(null);
     const [page, setPage] = useState(1);
 
-    let history = useHistory();
+    const navigate = useNavigate();
     let queryStr = queryString.parse(useLocation().search);
     let location = queryStr.borough;
 
@@ -39,11 +39,14 @@ export default function Restaurants() {
     if (restaurants !== null && restaurants.length > 0) {
         return (
             <>
-                <Card>
+                <Card className='mt-4'>
                     <Card.Body>
                         <Card.Title>Restaurant List</Card.Title>
                         <Card.Text>
                             Full list of restaurants. Optionally sorted by borough
+                        </Card.Text>
+                        <Card.Text>
+                            Hint: You can search your restaurant by borough (case sensitive)
                         </Card.Text>
                     </Card.Body>
                 </Card>
@@ -59,7 +62,7 @@ export default function Restaurants() {
                     </thead>
                     <tbody>
                         {restaurants.map(restaurant => (
-                            <tr onClick={() => { history.push(`/restaurant/${restaurant._id}`) }} key={restaurant._id}>
+                            <tr onClick={() => { navigate(`/restaurant/${restaurant._id}`) }} key={restaurant._id}>
                                 <td>{restaurant.name}</td>
                                 <td>{restaurant.address.building} {restaurant.address.street}</td>
                                 <td>{restaurant.borough}</td>
@@ -89,7 +92,7 @@ export default function Restaurants() {
                         </Card.Body>
                     </Card>
                 </>)
-        }else{
+        } else {
             return (
                 <>
                     <br /><Card>
